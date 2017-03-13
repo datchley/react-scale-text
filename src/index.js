@@ -51,7 +51,12 @@ class ScaleText extends Component {
     const { children } = this.props;
     const assignRef = (c) => { this.content = c; };
     // , width: '100%', height: '100%' };
-    const wrapStyle = { display: 'inline-block', overflow: 'hidden', width: '100%', height: '100%' };
+    const wrapStyle = {
+      display: 'inline-block',
+      overflow: 'hidden',
+      width: '100%',
+      height: '100%'
+    };
     return (
       <div ref={c => { this.wrapper = c; }} style={wrapStyle}>
         { React.Children.map(children, (child) =>
