@@ -1,16 +1,17 @@
----
+sudo: false
 language: node_js
 node_js:
-- stable
-sudo: false
-cache:
-  directories:
-  - docs/vendor/bundle
-  - node_modules
+  - stable
 script:
-- |
-    if [ "$TRAVIS_PULL_REQUEST" = false ]; then
-      set -e
-      npm run test:cov
-      cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
-    fi
+  - npm test
+before_install:
+  - npm i -g makeshift && makeshift -s @datchley -r https://registry.npmjs.org
+after_success:
+  - npm run report-coverage
+deploy:
+  provider: npm
+  email: david.m.atchley@gmail.com
+  api_key: $NPM_TOKEN
+  on:
+    tags: true
+    repo: datchley/react-scale-text
