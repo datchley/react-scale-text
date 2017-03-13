@@ -13,8 +13,6 @@ describe('ScaleText', () => {
     const wrapper = mount(
       <div style={pStyles}><ScaleText minFontSize={12}><p>Some text</p></ScaleText></div>
     );
-    console.log(wrapper.html());
-    console.log(wrapper.find('p').getDOMNode().style.fontSize);
     const fontSize = parseFloat(wrapper.find('p').getDOMNode().style.fontSize, 10);
     expect(fontSize).toBeGreaterThanOrEqual(12);
   });
@@ -24,8 +22,6 @@ describe('ScaleText', () => {
     const wrapper = mount(
       <div style={pStyles}><ScaleText maxFontSize={20}><p>Some text</p></ScaleText></div>
     );
-    console.log(wrapper.html());
-    console.log(wrapper.find('p').getDOMNode().style.fontSize);
     const fontSize = parseFloat(wrapper.find('p').getDOMNode().style.fontSize, 10);
     expect(fontSize).toBeLessThanOrEqual(20);
   });
