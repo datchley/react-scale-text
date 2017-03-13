@@ -10,12 +10,10 @@
     "build:umd": "webpack && NODE_ENV=production webpack",
     "build:analyze": "webpack --json > ./lib/build-stats.json",
     "lint": "eslint src examples",
-    "test": "nyc ./node_modules/.bin/ava -v",
+    "test": "jest", 
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "prepublish": "npm run lint && npm run test && npm run clean && npm run build && npm run build:umd",
-    "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
-    "standard": "standard index.js",
     "release": "standard-version"
   },
   "repository": {
