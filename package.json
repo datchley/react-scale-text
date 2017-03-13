@@ -1,6 +1,6 @@
 {
   "name": "react-scale-text",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A React component for keeping a component's text sized to fill it's container",
   "main": "lib/react-scale-text.js",
   "module": "lib/index.js",
@@ -16,7 +16,7 @@
     "prepublish": "npm run lint && npm run test && npm run clean && npm run build && npm run build:umd",
     "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
     "standard": "standard index.js",
-    "release": "standard-version" 
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
