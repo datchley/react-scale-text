@@ -1,0 +1,66 @@
+{
+  "name": "react-scale-text",
+  "version": "1.0.0",
+  "description": "A React component for keeping a component's text sized to fill it's container",
+  "main": "lib/react-scale-text.js",
+  "module": "lib/index.js",
+  "scripts": {
+    "clean": "rimraf lib coverage",
+    "build": "babel src --out-dir lib --ignore __tests__",
+    "build:umd": "webpack && NODE_ENV=production webpack",
+    "build:analyze": "webpack --json > ./lib/build-stats.json",
+    "lint": "eslint src examples",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "prepublish": "npm run lint && npm run test && npm run clean && npm run build && npm run build:umd"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/datchley/react-scale-text.git"
+  },
+  "keywords": [
+    "react-scale-text"
+  ],
+  "author": "David Atchley <david.m.atchley@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/datchley/react-scale-text/issues"
+  },
+  "homepage": "https://github.com/datchley/react-scale-text",
+  "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-core": "^6.4.5",
+    "babel-jest": "^10.0.2",
+    "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "coveralls": "^2.11.8",
+    "enzyme": "^2.7.1",
+    "enzyme-to-json": "^1.4.5",
+    "eslint": "^2.3.0",
+    "eslint-config-airbnb": "^6.0.2",
+    "eslint-plugin-react": "^4.1.0",
+    "jest": "^19.0.2",
+    "react-addons-test-utils": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "rimraf": "^2.5.0",
+    "webpack": "^1.12.11",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "react": "^15.0.1"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "unmockedModulePathPatterns": [
+      "react",
+      "react-dom",
+      "react-addons-test-utils",
+      "enzyme"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScaleText renders correctly 1`] = `
+<div>
+  <ScaleText
+    maxFontSize={Infinity}
+    minFontSize={-Infinity}
+  >
+    <p>
+      Some text
+    </p>
+  </ScaleText>
+</div>
+`;
