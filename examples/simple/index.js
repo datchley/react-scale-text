@@ -6,25 +6,49 @@ const App = () => (
   <div>
     <div className="box-descriptions">
       <ul>
-        <li> <b>Box 1</b> - <code>&lt;ScaleText /&gt;</code></li>
-        <li> <b>Box 2</b> - <code>&lt;ScaleText minFontSize={12} /&gt;</code></li>
-        <li> <b>Box 3</b> - <code>&lt;ScaleText maxFontSize={35} /&gt;</code></li>
+        <li> <b>Box 1</b> - <code>&lt;ScaleText /&gt;</code> (<i>centered</i>)</li>
+        <li> <b>Box 2</b> - <code>&lt;ScaleText minFontSize={20} /&gt;</code> (<i>centered</i>)</li>
+        <li> <b>Box 3</b> - <code>&lt;ScaleText maxFontSize={55} /&gt;</code> (<i>centered</i>)</li>
+        <li> <b>Box 4</b> -
+          <code>&lt;ScaleText minFontSize={20} maxFontSize={55} /&gt;</code>
+        </li>
+        <li> <b>Box 5</b> - <code>&lt;ScaleText /&gt;</code></li>
       </ul>
     </div>
     <div className="box-container">
       <div className="box">
         <ScaleText>
-          <span className="box-text">Box 1</span>
+          <span className="box-text centered">
+            Box 1
+          </span>
         </ScaleText>
       </div>
       <div className="box">
-        <ScaleText minFontSize={12}>
-          <span className="box-text">Box 2</span>
+        <ScaleText minFontSize={20}>
+          <span className="box-text centered">
+            Box 2
+          </span>
         </ScaleText>
       </div>
       <div className="box">
-        <ScaleText maxFontSize={35}>
-          <span className="box-text">Box 3</span>
+        <ScaleText maxFontSize={55}>
+          <span className="box-text centered">
+            Box 3
+          </span>
+        </ScaleText>
+      </div>
+      <div className="box">
+        <ScaleText minFontSize={20} maxFontSize={55}>
+          <span className="box-text">
+            Box 4
+          </span>
+        </ScaleText>
+      </div>
+      <div className="box">
+        <ScaleText>
+          <span className="box-text">
+            Box 5
+          </span>
         </ScaleText>
       </div>
     </div>

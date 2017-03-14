@@ -5,7 +5,7 @@ import debounce from 'lodash/debounce';
 class ScaleText extends Component {
 
   componentDidMount() {
-    this.handleResize = debounce(this.scale.bind(this), 0);
+    this.handleResize = debounce(this.scale.bind(this), 50);
     window.addEventListener('resize', this.handleResize);
     this.scale();
   }
@@ -32,25 +32,31 @@ class ScaleText extends Component {
       parseFloat(minFontSize)
     );
 
+    el.style.lineHeight = '1';
     el.style.fontSize = `${fontSize}px`;
-
-    if (fontSize === minFontSize) {
-      return;
-    }
 
     if (fontSize < maxFontSize) {
       // Bump up the font-size as long as we don't have any overflow of our parent
-      while (!hasOverflow(wrapper, el) && (parseFloat(el.style.fontSize) < maxFontSize)) {
-        el.style.fontSize = scaleFontBy(el, +1);
+      while (!hasOverflow(wrapper, el)) {
+        scaleFontBy(el, +1);
+        if (parseFloat(el.style.fontSize, 10) <= minFontSize) {
+          el.style.fontSize = `${minFontSize}px`;
+          break;
+        }
+        if (parseFloat(el.style.fontSize, 10) >= maxFontSize) {
+          el.style.fontSize = `${maxFontSize}px`;
+          break;
+        }
       }
-      el.style.fontSize = scaleFontBy(el, -1);
+      if (parseFloat(el.style.fontSize, 10) > minFontSize) {
+        scaleFontBy(el, -1);
+      }
     }
   }
 
   render() {
     const { children } = this.props;
     const assignRef = (c) => { this.content = c; };
-    // , width: '100%', height: '100%' };
     const wrapStyle = {
       display: 'inline-block',
       overflow: 'hidden',

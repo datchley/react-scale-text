@@ -8,26 +8,6 @@ import values from 'lodash/values';
 export const camelize = (str) =>
   str.replace(/\-(\w)/g, (s, letter) => letter.toUpperCase());
 
-// Detect if child overflows parent either veritcally or horizontally
-export const getOverflow = (parent, child) => {
-  const parentRect = parent.getBoundingClientRect();
-  const childRect = child.getBoundingClientRect();
-
-  return {
-    vertical: (parentRect.bottom < childRect.bottom) ||
-      (parentRect.top > childRect.top) ||
-      (child.scrollHeight > child.offsetHeight
-    ),
-    horizontal: (parentRect.right < childRect.right) ||
-      (parentRect.left > child.left) ||
-      (child.scrollWidth > child.offsetWidth)
-  };
-};
-
-// Wrapper for checking for 'any' overflow of parent by child
-export const hasOverflow = (parent, child) =>
-  values(getOverflow(parent, child)).some(v => v);
-
 // Get the current style property value for the given element
 export function getStyle(el, styleProp) {
   if (el.currentStyle) {
@@ -40,3 +20,25 @@ export function getStyle(el, styleProp) {
   }
   return el.style[camelize(styleProp)];
 }
+
+// Detect if child overflows parent either veritcally or horizontally
+// for chilcdren that are absolutely positioned
+export const getOverflow = (parent, child) => {
+  const parentRect = parent.getBoundingClientRect();
+  const childRect = child.getBoundingClientRect();
+
+  return {
+    vertical: (parentRect.bottom < childRect.bottom) ||
+      (parentRect.top > childRect.top),
+    horizontal: (parentRect.right < childRect.right) ||
+      (parentRect.left > child.left)
+  };
+};
+
+// Wrapper for checking for 'any' overflow of parent by child
+export const hasOverflow = (parent, child) => {
+  if (getStyle(child, 'position') === 'absolute') {
+    return values(getOverflow(parent, child)).some(v => v);
+  }
+  return (parent.clientWidth < parent.scrollWidth || parent.clientHeight < parent.scrollHeight);
+};
