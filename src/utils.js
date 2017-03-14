@@ -5,7 +5,7 @@
 import values from 'lodash/values';
 
 // Camelcase a dashed string, ie do-thing => doThing
-const camelize = (str) =>
+export const camelize = (str) =>
   str.replace(/\-(\w)/g, (s, letter) => letter.toUpperCase());
 
 // Detect if child overflows parent either veritcally or horizontally
