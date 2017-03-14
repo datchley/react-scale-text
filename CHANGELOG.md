@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.4"></a>
+## [1.0.4](https://github.com/datchley/react-scale-text/compare/v1.0.3...v1.0.4) (2017-03-14)
+
+
+### Bug Fixes
+
+* eslint issues with util test ([fa2c982](https://github.com/datchley/react-scale-text/commit/fa2c982))
+* overflow checking, added examples ([de09bf3](https://github.com/datchley/react-scale-text/commit/de09bf3))
+
+
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/datchley/react-scale-text/compare/v1.0.2...v1.0.3) (2017-03-14)
 
