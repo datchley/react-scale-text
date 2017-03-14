@@ -1,10 +1,10 @@
 import { camelize, getStyle, getOverflow, hasOverflow } from '../utils';
 
-function createMockDiv (width, height, styles = {}) {
-  const div = document.createElement("div");
+function createMockDiv(width, height, styles = {}) {
+  const div = document.createElement('div');
   Object.assign(div.style, {
-    width: width+"px",
-    height: height+"px",
+    width: `${width}px`,
+    height: `${height}px`,
   }, styles);
 
   // we have to mock this for jsdom.

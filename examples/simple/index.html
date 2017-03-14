@@ -1,6 +1,44 @@
 <html>
   <head>
-    <title>library-boilerplate-example-title</title>
+    <title>ScaleText Examples</title>
+    <style type="text/css">
+      *, *:before, *:after {
+        box-sizing: border-box;
+      }
+
+      html,body {
+        margin: 15px;
+      }
+
+      body {
+        font-family: 'Source Sans Pro', 'Lucida Grande', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 25px;
+        letter-spacing: inherit;
+      }
+
+      .box {
+        position: relative;
+        display: inline-block;
+        width: 20vw;
+        height: 20vw;
+        overflow: hidden;
+        resize: both;
+        padding: 5px;
+        text-align: center;
+        border: 1px solid #ccc;
+        margin: 5px;
+      }
+
+      .box-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+    </style>
   </head>
   <body>
     <div id="root">

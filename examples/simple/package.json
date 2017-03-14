@@ -1,23 +1,23 @@
 {
-  "name": "library-boilerplate-example",
+  "name": "react-scale-text-example",
   "version": "1.0.0",
-  "description": "library-boilerplate-example-description",
+  "description": "Example usage for ScaleText Component",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/library-boilerplate-author/library-boilerplate.git"
+    "url": "https://github.com/datchley/react-scale-text.git"
   },
   "keywords": [
-    "library-boilerplate-keywords"
+    "keywords"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/library-boilerplate-author/library-boilerplate/issues"
+    "url": "https://github.com/datchley/react-scale-text/issues"
   },
-  "homepage": "https://github.com/library-boilerplate-author/library-boilerplate",
+  "homepage": "https://github.com/datchley/react-scale-text",
   "dependencies": {
     "react": "^0.14.6",
     "react-dom": "^0.14.6"

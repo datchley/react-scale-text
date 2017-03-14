@@ -18,9 +18,6 @@ module.exports = {
     new webpack.NoErrorsPlugin()
   ],
   resolve: {
-    alias: {
-      'library-boilerplate': path.join(__dirname, '..', '..', 'src')
-    },
     extensions: ['', '.js']
   },
   module: {
