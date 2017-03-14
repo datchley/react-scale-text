@@ -1,11 +1,21 @@
 import React, { Component, PropTypes } from 'react';
 import { hasOverflow } from './utils';
-import debounce from 'lodash/debounce';
+// import debounce from 'lodash/debounce';
+import throttle from 'lodash/throttle';
 
 class ScaleText extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      wrapper: null,
+      content: null,
+      fontSize: null
+    };
+  }
+
   componentDidMount() {
-    this.handleResize = debounce(this.scale.bind(this), 50);
+    this.handleResize = throttle(this.scale.bind(this), 50, { leading: true });
     window.addEventListener('resize', this.handleResize);
     this.scale();
   }
@@ -18,27 +28,22 @@ class ScaleText extends Component {
     const el = this.content;
     const wrapper = this.wrapper;
     const { maxFontSize, minFontSize } = this.props;
-    const factor = 1.3;
+    const factor = 1;
+    const parse = font => parseFloat(font, 10);
     let fontSize = minFontSize;
-
-    const scaleFontBy = (elem, step) => {
-      /* eslint-disable no-param-reassign */
-      elem.style.fontSize = `${parseFloat(elem.style.fontSize, 10) + step}px`;
-    };
 
     // Make educated guess at maximum font-size for our child element
     fontSize = Math.max(
-      Math.min(wrapper.offsetWidth / (factor * 10), parseFloat(maxFontSize)),
-      parseFloat(minFontSize)
+      Math.min(wrapper.offsetWidth / (factor * 10), maxFontSize),
+      minFontSize
     );
-
     el.style.lineHeight = '1';
     el.style.fontSize = `${fontSize}px`;
 
     if (fontSize < maxFontSize) {
       // Bump up the font-size as long as we don't have any overflow of our parent
       while (!hasOverflow(wrapper, el)) {
-        scaleFontBy(el, +1);
+        el.style.fontSize = `${parse(el.style.fontSize) + 1}px`;
         if (parseFloat(el.style.fontSize, 10) <= minFontSize) {
           el.style.fontSize = `${minFontSize}px`;
           break;
@@ -49,24 +54,26 @@ class ScaleText extends Component {
         }
       }
       if (parseFloat(el.style.fontSize, 10) > minFontSize) {
-        scaleFontBy(el, -1);
+        el.style.fontSize = `${parse(el.style.fontSize) - 1}px`;
       }
     }
   }
 
   render() {
     const { children } = this.props;
-    const assignRef = (c) => { this.content = c; };
+    const contentRef = (c) => { this.content = c; };
+    const wrapperRef = (c) => { this.wrapper = c; };
     const wrapStyle = {
       display: 'inline-block',
       overflow: 'hidden',
       width: '100%',
       height: '100%'
     };
+
     return (
-      <div ref={c => { this.wrapper = c; }} style={wrapStyle}>
+      <div ref={wrapperRef} style={wrapStyle}>
         { React.Children.map(children, (child) =>
-            React.cloneElement(child, { ref: assignRef })
+            React.cloneElement(child, { ref: contentRef })
           )[0]
         }
       </div>
