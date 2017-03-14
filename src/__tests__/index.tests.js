@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import ScaleText from '../index';
 
 
@@ -13,7 +13,7 @@ describe('ScaleText', () => {
   // Element proeperties such as clientHeight/Width, scrollHeight/Width
   // getBoundingClientRect(), etc.  jsdom doesn't polyfill those, as it
   // doesn't have a full rendering engine.
-  /*it('renders correctly, with minFontSize', () => {
+  /* it('renders correctly, with minFontSize', () => {
     const pStyles = { width: '100px', height: '100px' };
     const wrapper = mount(
       <div className="parent" style={pStyles}>
