@@ -1,6 +1,6 @@
 {
   "name": "react-scale-text",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A React component for keeping a component's text sized to fill it's container",
   "main": "lib/react-scale-text.js",
   "module": "lib/index.js",
