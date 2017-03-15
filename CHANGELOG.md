@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.7"></a>
+## [1.0.7](https://github.com/datchley/react-scale-text/compare/v1.0.6...v1.0.7) (2017-03-15)
+
+
+### Bug Fixes
+
+* explicit extension on jest.setMock ([09fadc7](https://github.com/datchley/react-scale-text/commit/09fadc7))
+* ignore __mocks__ for build ([cf4e080](https://github.com/datchley/react-scale-text/commit/cf4e080))
+* ignore tests/mocks in build ([c6d4f9a](https://github.com/datchley/react-scale-text/commit/c6d4f9a))
+* unit test fixes w/ ugly manual mock ([987a857](https://github.com/datchley/react-scale-text/commit/987a857))
+
+
+
 <a name="1.0.6"></a>
 ## [1.0.6](https://github.com/datchley/react-scale-text/compare/v1.0.5...v1.0.6) (2017-03-14)
 
