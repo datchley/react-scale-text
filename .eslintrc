@@ -1,5 +1,6 @@
 {
   "extends": "eslint-config-airbnb",
+  "parser": "babel-eslint",
   "env": {
     "browser": true,
     "jest": true,
@@ -10,7 +11,8 @@
     "react/jsx-uses-vars": 2,
     "react/react-in-jsx-scope": 2,
     "comma-dangle": 0,
-    "brace-style": ["error", "stroustrup", { "allowSingleLine": true }]
+    "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
+    "space-before-function-paren": 0
   },
   "plugins": [
     "react"

@@ -1,27 +1,4 @@
-import { camelize, getStyle, getOverflow, hasOverflow } from '../utils';
-
-function createMockDiv(width, height, styles = {}) {
-  const div = document.createElement('div');
-  Object.assign(div.style, {
-    width: `${width}px`,
-    height: `${height}px`,
-  }, styles);
-
-  // we have to mock this for jsdom.
-  div.getBoundingClientRect = () => ({
-    width: div.style.width || width,
-    height: div.style.height || height,
-    top: 0,
-    left: 0,
-    right: div.style.width || width,
-    bottom: div.style.height || height,
-  });
-  div.prototype.clientWidth = div.clientWidth || width;
-  div.prototype.scrollWidth = div.scrollWidth || width;
-  div.prototype.clientHeight = div.clientHeight || height;
-  div.prototype.scrollHeight = div.scrollHeight || height;
-  return div;
-}
+import { camelize, getStyle } from '../utils';
 
 describe('camelize()', () => {
   it('correctly camelizes a dashed string', () => {
@@ -47,24 +24,3 @@ describe('getStyle()', () => {
   });
 });
 
-describe.skip('getOverflow() + hasOverflow()', () => {
-  // TODO: Find a way to mock clientHeight/Width and scrollHeight/Width
-  // so we can unit test these methods
-  it('detects and tests for overflow', () => {
-    document.body.innerHTML = '<html><body></body></html>';
-
-    const parent = createMockDiv(100, 100, { overflow: 'hidden' });
-    document.body.appendChild(parent);
-    const child = createMockDiv(200, 200);
-    parent.appendChild(child);
-
-    expect(getOverflow(parent, child)).toMatchObject({ horizontal: true, vertical: true });
-    expect(hasOverflow(parent, child)).toEqual(true);
-    child.style.height = '100px';
-    expect(getOverflow(parent, child)).toMatchObject({ horizontal: true, vertical: false });
-    expect(hasOverflow(parent, child)).toEqual(true);
-    child.style.width = '100px';
-    expect(getOverflow(parent, child)).toMatchObject({ horizontal: false, vertical: false });
-    expect(hasOverflow(parent, child)).toEqual(false);
-  });
-});

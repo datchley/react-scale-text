@@ -1,18 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { hasOverflow } from './utils';
-// import debounce from 'lodash/debounce';
+import { setRef, hasOverflow } from './utils';
 import throttle from 'lodash/throttle';
 
 class ScaleText extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      wrapper: null,
-      content: null,
-      fontSize: null
-    };
-  }
 
   componentDidMount() {
     this.handleResize = throttle(this.scale.bind(this), 50, { leading: true });
@@ -61,8 +51,8 @@ class ScaleText extends Component {
 
   render() {
     const { children } = this.props;
-    const contentRef = (c) => { this.content = c; };
-    const wrapperRef = (c) => { this.wrapper = c; };
+    const contentRef = setRef('content', this); //  (c) => { this.content = c; };
+    const wrapperRef = setRef('wrapper', this); //  (c) => { this.wrapper = c; };
     const wrapStyle = {
       display: 'inline-block',
       overflow: 'hidden',
@@ -71,7 +61,7 @@ class ScaleText extends Component {
     };
 
     return (
-      <div ref={wrapperRef} style={wrapStyle}>
+      <div className="scaletext-wrapper" ref={wrapperRef} style={wrapStyle}>
         { React.Children.map(children, (child) =>
             React.cloneElement(child, { ref: contentRef })
           )[0]

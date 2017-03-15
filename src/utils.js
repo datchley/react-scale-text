@@ -8,6 +8,11 @@ import values from 'lodash/values';
 export const camelize = (str) =>
   str.replace(/\-(\w)/g, (s, letter) => letter.toUpperCase());
 
+// Used to create ref setters so we can mock elements in tests
+/* eslint-disable no-param-reassign */
+export const setRef = (name, context) => (e) => { context[name] = e; };
+/* eslint-enable no-param-reassign */
+
 // Get the current style property value for the given element
 export function getStyle(el, styleProp) {
   if (el.currentStyle) {
