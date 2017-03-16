@@ -82,4 +82,5 @@ ScaleText.defaultProps = {
   maxFontSize: Number.POSITIVE_INFINITY,
 };
 
-export default ScaleText;
+// export default ScaleText;
+module.exports = ScaleText;
