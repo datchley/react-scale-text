@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.8"></a>
+## [1.0.8](https://github.com/datchley/react-scale-text/compare/v1.0.7...v1.0.8) (2017-03-16)
+
+
+### Bug Fixes
+
+* changes to webpack umd build, example ([49317b1](https://github.com/datchley/react-scale-text/commit/49317b1))
+* eslint issues in example ([3f4cd8e](https://github.com/datchley/react-scale-text/commit/3f4cd8e))
+* no exports.default for umd build ([9babdd6](https://github.com/datchley/react-scale-text/commit/9babdd6))
+
+
+
 <a name="1.0.7"></a>
 ## [1.0.7](https://github.com/datchley/react-scale-text/compare/v1.0.6...v1.0.7) (2017-03-15)
 
