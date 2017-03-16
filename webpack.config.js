@@ -40,9 +40,8 @@ module.exports = {
   output: {
     path: __dirname + '/lib',
     filename: fileName,
-    library: exportName, 
-    libraryTarget: 'umd',
-    umdNamedDefine: true
+    library: exportName,
+    libraryTarget: 'umd'
   },
   plugins: plugins,
   resolve: {
