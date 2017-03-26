@@ -2,16 +2,25 @@
  * @file utils.js
  * @description DOM utility functions
  */
-import values from 'lodash/values';
+
+// Simple way to generate a unique id
+let id = 0;
+export const uniqId = () => `uid-${Date.now()}-${id++}`;
 
 // Camelcase a dashed string, ie do-thing => doThing
 export const camelize = (str) =>
   str.replace(/\-(\w)/g, (s, letter) => letter.toUpperCase());
 
-// Used to create ref setters so we can mock elements in tests
-/* eslint-disable no-param-reassign */
-export const setRef = (name, context) => (e) => { context[name] = e; };
-/* eslint-enable no-param-reassign */
+/* eslint-disable no-param-reassign, guard-for-in */
+// Set multiple css properties on an element `el` by
+// passing in a `style` object that defines what properties
+// to set and their value
+export const css = (el, styles) => {
+  for (const property in styles) {
+    el.style[property] = styles[property];
+  }
+};
+/* eslint-enable no-param-reassign, guard-for-in */
 
 // Get the current style property value for the given element
 export function getStyle(el, styleProp) {
@@ -26,24 +35,49 @@ export function getStyle(el, styleProp) {
   return el.style[camelize(styleProp)];
 }
 
-// Detect if child overflows parent either veritcally or horizontally
-// for chilcdren that are absolutely positioned
-export const getOverflow = (parent, child) => {
-  const parentRect = parent.getBoundingClientRect();
-  const childRect = child.getBoundingClientRect();
+/* eslint-disable no-param-reassign */
+// Determine the font-size to set on the element `el` that will
+// allow the first child of that element to fill the maximum height
+// and width without causing overflow
+export function getFillSize(el, minFontSize, maxFontSize, factor = 1) {
+  // Make an initial guess at font-size that fits width
+  let fontSize = Math.min(
+    Math.max(
+      Math.min(Number(el.offsetWidth) / (factor * 10), maxFontSize),
+      minFontSize
+    )
+  );
 
-  return {
-    vertical: (parentRect.bottom < childRect.bottom) ||
-      (parentRect.top > childRect.top),
-    horizontal: (parentRect.right < childRect.right) ||
-      (parentRect.left > child.left)
-  };
-};
+  const step = 1;
+  let complete;
 
-// Wrapper for checking for 'any' overflow of parent by child
-export const hasOverflow = (parent, child) => {
-  if (getStyle(child, 'position') === 'absolute') {
-    return values(getOverflow(parent, child)).some(v => v);
+  while (!complete) {
+    el.style.fontSize = `${fontSize}px`;
+    const wrap = el.getBoundingClientRect();
+    const child = el.firstChild.getBoundingClientRect();
+    const overflowHeight = ((wrap.top > child.top) || (wrap.bottom < child.bottom));
+    const overflowWidth = ((wrap.left > child.left) || (wrap.right < child.right));
+
+    if (overflowHeight || overflowWidth) {
+      if (fontSize <= minFontSize) {
+        fontSize = minFontSize;
+        complete = true;
+      }
+      else {
+        fontSize = fontSize - step;
+        complete = true;
+      }
+    }
+    else {
+      if (fontSize >= maxFontSize) {
+        fontSize = maxFontSize;
+        complete = true;
+      }
+      else if (!complete) {
+        fontSize = fontSize + step;
+      }
+    }
   }
-  return (parent.clientWidth < parent.scrollWidth || parent.clientHeight < parent.scrollHeight);
-};
+  return fontSize;
+}
+/* eslint-enable no-param-reassign */

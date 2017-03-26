@@ -48,6 +48,7 @@
     "eslint-config-airbnb": "^6.0.2",
     "eslint-plugin-react": "^4.1.0",
     "ghooks": "^1.2.4",
+    "invariant": "^2.2.2",
     "jest": "^19.0.2",
     "jsdom": "^9.12.0",
     "nyc": "^10.0.0",
@@ -57,6 +58,7 @@
     "standard": "^8.4.0",
     "standard-version": "^4.0.0",
     "travis": "^0.1.1",
+    "warning": "^3.0.0",
     "webpack": "^1.12.11",
     "webpack-dev-server": "^1.14.1"
   },
