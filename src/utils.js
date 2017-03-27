@@ -22,6 +22,12 @@ export const css = (el, styles) => {
 };
 /* eslint-enable no-param-reassign, guard-for-in */
 
+// generate a ref function for components
+// allows us to externalize this and mock it for unit testing
+/* eslint-disable no-param-reassign */
+export const setRef = (name, context) => (c) => { context[name] = c; };
+/* eslint-enable no-param-reassign */
+
 // Get the current style property value for the given element
 export function getStyle(el, styleProp) {
   if (el.currentStyle) {

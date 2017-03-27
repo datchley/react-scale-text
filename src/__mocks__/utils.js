@@ -74,21 +74,5 @@ utils.setRef._isMock = true;
 
 utils.getStyle = (el, prop) => elementMap[el.className][utils.camelize(prop)];
 
-const origGetOverflow = utils.getOverflow;
-utils.getOverflow = (/* parent, child */) => {
-  const parent = elementMap.wrapper;
-  const child = elementMap.content;
-  return origGetOverflow(parent, child);
-};
-
-// const origHasOverflow = utils.hasOverflow;
-utils.hasOverflow = (/* parent, child */) => {
-  const parent = elementMap.wrapper;
-  const child = elementMap.content;
-  if (child.style.position && child.style.position === 'absolute') {
-    return values(utils.getOverflow(parent, child)).some(v => v);
-  }
-  return (parent.clientWidth <= parent.scrollWidth || parent.clientHeight <= parent.scrollHeight);
-};
 
 module.exports = utils;
