@@ -55,6 +55,7 @@ export function getFillSize(el, minFontSize, maxFontSize, factor = 1) {
     el.style.fontSize = `${fontSize}px`;
     const wrap = el.getBoundingClientRect();
     const child = el.firstChild.getBoundingClientRect();
+
     const overflowHeight = ((wrap.top > child.top) || (wrap.bottom < child.bottom));
     const overflowWidth = ((wrap.left > child.left) || (wrap.right < child.right));
 

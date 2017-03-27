@@ -25,7 +25,7 @@ class ScaleText extends Component {
     const { children } = this.props;
     this._invalidChild = React.Children.count(children) > 1;
 
-    warn(this._invalidChild,
+    warn(!this._invalidChild,
       `'ScaleText' expects a single node as a child, but we found
       ${React.Children.count(children)} children instead.
       No scaling will be done on this subtree`
@@ -55,12 +55,14 @@ class ScaleText extends Component {
 
   resize() {
     const { minFontSize, maxFontSize } = this.props;
+    if (this.ruler) {
+      this.clearRuler();
+    }
     this.createRuler();
     this.setState({
       size: getFillSize(this.ruler, minFontSize, maxFontSize),
       complete: true
     });
-    this.clearRuler();
   }
 
   createRuler() {
@@ -102,10 +104,11 @@ class ScaleText extends Component {
         'inherit'
     };
 
+    console.log('[render] font-size:', fontSize);
     return (
       <div
         className="scaletext-wrapper"
-        ref={c => this._wrapper = c}
+        ref={c => { this._wrapper = c; }}
         style={style}
       >
         {
