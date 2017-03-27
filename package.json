@@ -9,7 +9,7 @@
     "build": "babel src --out-dir lib --ignore __tests__,__mocks__ && npm run build:umd",
     "build:umd": "webpack && NODE_ENV=production webpack",
     "build:analyze": "webpack --json > ./lib/build-stats.json",
-    "lint": "eslint src examples",
+    "lint": "eslint src",
     "test": "jest --env=jsdom",
     "test:watch": "jest --env=jsdom --watch",
     "test:cov": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
@@ -46,6 +46,7 @@
     "enzyme-to-json": "^1.4.5",
     "eslint": "^3.18.0",
     "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
     "ghooks": "^2.0.0",
@@ -53,19 +54,19 @@
     "jest": "^19.0.2",
     "jsdom": "^9.12.0",
     "nyc": "^10.0.0",
-    "react": "^15.4.2",
     "react-addons-test-utils": "^15.4.2",
-    "react-dom": "^15.4.2",
     "rimraf": "^2.5.0",
     "standard": "^9.0.2",
     "standard-version": "^4.0.0",
     "travis": "^0.1.1",
-    "warning": "^3.0.0",
     "webpack": "^2.3.2",
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
-    "lodash": "^4.17.4"
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "lodash": "^4.17.4",
+    "warning": "^3.0.0"
   },
   "jest": {
     "testEnvironment": "jsdom",
@@ -78,10 +79,5 @@
       "react-addons-test-utils",
       "enzyme"
     ]
-  },
-  "config": {
-    "ghooks": {
-      "pre-commit": "npm run standard"
-    }
   }
 }

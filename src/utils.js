@@ -8,10 +8,10 @@ let id = 0;
 export const uniqId = () => `uid-${Date.now()}-${id++}`;
 
 // Camelcase a dashed string, ie do-thing => doThing
-export const camelize = (str) =>
-  str.replace(/\-(\w)/g, (s, letter) => letter.toUpperCase());
+export const camelize = str =>
+  str.replace(/-(\w)/g, (s, letter) => letter.toUpperCase());
 
-/* eslint-disable no-param-reassign, guard-for-in */
+/* eslint-disable no-param-reassign, guard-for-in, no-restricted-syntax */
 // Set multiple css properties on an element `el` by
 // passing in a `style` object that defines what properties
 // to set and their value
@@ -20,7 +20,7 @@ export const css = (el, styles) => {
     el.style[property] = styles[property];
   }
 };
-/* eslint-enable no-param-reassign, guard-for-in */
+/* eslint-enable no-param-reassign, guard-for-in, no-restricted-syntax */
 
 // generate a ref function for components
 // allows us to externalize this and mock it for unit testing
@@ -71,18 +71,16 @@ export function getFillSize(el, minFontSize, maxFontSize, factor = 1) {
         complete = true;
       }
       else {
-        fontSize = fontSize - step;
+        fontSize -= step;
         complete = true;
       }
     }
-    else {
-      if (fontSize >= maxFontSize) {
-        fontSize = maxFontSize;
-        complete = true;
-      }
-      else if (!complete) {
-        fontSize = fontSize + step;
-      }
+    else if (fontSize >= maxFontSize) {
+      fontSize = maxFontSize;
+      complete = true;
+    }
+    else if (!complete) {
+      fontSize += step;
     }
   }
   return fontSize;

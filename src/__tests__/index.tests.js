@@ -1,3 +1,4 @@
+/* eslint-disable import/first */
 jest.setMock('../utils', require('../__mocks__/utils.js'));
 
 import React from 'react';

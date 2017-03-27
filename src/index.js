@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { getStyle, css, uniqId, getFillSize } from './utils';
 import warn from 'warning';
+import { setRef, getStyle, css, uniqId, getFillSize } from './utils';
 
 class ScaleText extends Component {
   constructor(props) {
@@ -85,7 +85,7 @@ class ScaleText extends Component {
 
   render() {
     const { size: fontSize } = this.state;
-    let { children } = this.props;
+    const { children } = this.props;
 
     const child = React.isValidElement(children) ?
       React.Children.only(children) :
@@ -108,7 +108,7 @@ class ScaleText extends Component {
     return (
       <div
         className="scaletext-wrapper"
-        ref={c => { this._wrapper = c; }}
+        ref={setRef('_wrapper', this)}
         style={style}
       >
         {

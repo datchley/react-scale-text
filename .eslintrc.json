@@ -12,7 +12,10 @@
     "react/react-in-jsx-scope": 2,
     "comma-dangle": 0,
     "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
-    "space-before-function-paren": 0
+    "space-before-function-paren": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-underscore-dangle": 0,
+    "no-plusplus": 0
   },
   "plugins": [
     "react"

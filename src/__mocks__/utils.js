@@ -64,7 +64,7 @@ const __setMockElements = (mapping) => {
 };
 utils.__setMockElements = __setMockElements;
 
-utils.__getMockElement = (key) => elementMap[key];
+utils.__getMockElement = key => elementMap[key];
 
 utils.setRef = (name, context) => () => {
   context[name] = elementMap[name];
