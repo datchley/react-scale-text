@@ -1,4 +1,4 @@
-import { uniqId, camelize, getStyle, css, getFillSize } from '../utils';
+import { uniqId, camelize, getStyle, css } from '../utils';
 
 describe('uniqId()', () => {
   it('returns a string id', () => {
@@ -7,7 +7,7 @@ describe('uniqId()', () => {
   });
   it('returns unique ids overtime', () => {
     const ids = [];
-    for (let i=0; i<100; i++) {
+    for (let i = 0; i < 100; i++) {
       ids.push(uniqId());
     }
     expect((new Set(ids)).size).toEqual(100);

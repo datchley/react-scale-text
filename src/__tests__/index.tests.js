@@ -1,11 +1,11 @@
 jest.setMock('../utils', require('../__mocks__/utils.js'));
 
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import ScaleText from '../index';
 
 // jest.mock('../utils');
-const utils = require('utils');
+// const utils = require('utils');
 
 
 describe.skip('ScaleText', () => {
@@ -18,7 +18,7 @@ describe.skip('ScaleText', () => {
   // Element proeperties such as clientHeight/Width, scrollHeight/Width
   // getBoundingClientRect(), etc.  jsdom doesn't polyfill those, as it
   // doesn't have a full rendering engine.
-  /*it('renders correctly, with minFontSize', () => {
+  /* it('renders correctly, with minFontSize', () => {
     utils.__setMockElements({
       wrapper: { width: 100, height: 100, top: 0, left: 0 },
       content: { width: 105, height: 105, top: 0, left: 0 }

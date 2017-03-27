@@ -46,6 +46,7 @@
     "enzyme-to-json": "^1.4.5",
     "eslint": "^3.18.0",
     "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
     "ghooks": "^2.0.0",
     "invariant": "^2.2.2",

@@ -1,5 +1,4 @@
 // __mocks__/utils.js
-import values from 'lodash/values';
 
 const utils = require.requireActual('../utils');
 
