@@ -4,7 +4,7 @@ const path  = require('path');
 var webpack = require('webpack');
 
 var plugins = [
-  new webpack.optimize.OccurenceOrderPlugin(),
+  new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
   })
@@ -45,8 +45,8 @@ module.exports = {
   },
   plugins: plugins,
   resolve: {
-    root: path.resolve('./src'),
-    extensions: ['', '.js']
+    modules: [ path.resolve(__dirname, './src'), "node_modules" ],
+    extensions: ['.js']
   },
   externals: {
     'react': {
