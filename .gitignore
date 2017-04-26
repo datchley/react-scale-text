@@ -5,4 +5,4 @@ dist
 lib
 cov/
 coverage/
-.vscode
+.vscode/*
