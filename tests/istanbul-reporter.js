@@ -10,7 +10,6 @@ function Istanbul(runner) {
 
     coverageMap.merge(global.__coverage__ || {});
     // coverageMap.merge(window.__coverage__ || {});
-    console.log('[debug] cwd=', path.resolve(process.cwd(), 'coverage/coverage.json'));
     fs.writeFileSync(path.resolve(process.cwd(), 'coverage/coverage.json'), JSON.stringify(global.__coverage__));
 
     mainReporter.addAll(['text', 'html']);

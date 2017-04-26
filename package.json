@@ -16,7 +16,7 @@
     "test": "npm run test:mocha",
     "test:cov": "npm run test:instrument && npm run test:mocha-cov && npm run coverage",
     "test:instrument": "babel-istanbul instrument src --output cov --no-compact --complete-copy --es-modules",
-    "test:mocha": "electron-mocha --renderer --compilers js:babel-core/register --timeout 10000 ./tests/**/*.spec.js*",
+    "test:mocha": "electron-mocha ./tests/**/*.spec.js* --renderer --compilers js:babel-core/register --timeout 10000",
     "test:mocha-cov": "npm run test:mocha -- -r ./tests/coverage.js -R ./tests/istanbul-reporter.js && npm run coverage",
     "coverage": "babel-istanbul report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "prepublish": "npm run lint && npm run test && npm run clean && npm run build && npm run build:umd",
