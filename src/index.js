@@ -40,7 +40,7 @@ class ScaleText extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     // compare children's props for change
     if (!shallowEqual(prevProps.children.props, this.props.children.props)) {
       this.resize();
@@ -64,7 +64,6 @@ class ScaleText extends Component {
 
   resize() {
     const { minFontSize, maxFontSize } = this.props;
-    console.log(`[resize()]: _mounted?=${this._mounted}, _wrapper?=${typeof this._wrapper}`);
     if (!this._mounted || !this._wrapper) return;
     if (this.ruler) {
       this.clearRuler();

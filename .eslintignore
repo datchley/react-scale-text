@@ -5,3 +5,4 @@ examples/**/server.js
 build/
 node_modules/
 cov/
+tests/
