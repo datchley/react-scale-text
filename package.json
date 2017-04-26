@@ -16,7 +16,7 @@
     "test": "npm run test:mocha",
     "test:cov": "npm run test:instrument && npm run test:mocha-cov && npm run coverage",
     "test:instrument": "babel-istanbul instrument src --output cov --no-compact --complete-copy --es-modules",
-    "test:mocha": "NODE_ENV=test electron-mocha --renderer --compilers js:babel-core/register --timeout 10000 ./tests/**/*.spec.js*",
+    "test:mocha": "xvfb-maybe electron-mocha --renderer --compilers js:babel-core/register --timeout 10000 ./tests/**/*.spec.js*",
     "test:mocha-cov": "npm run test:mocha -- -r ./tests/coverage.js -R ./tests/istanbul-reporter.js && npm run coverage",
     "coverage": "babel-istanbul report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "prepublish": "npm run lint && npm run test && npm run clean && npm run build && npm run build:umd",
@@ -79,7 +79,8 @@
     "standard-version": "^4.0.0",
     "travis": "^0.1.1",
     "webpack": "^2.3.2",
-    "webpack-dev-server": "^2.4.2"
+    "webpack-dev-server": "^2.4.2",
+    "xvfb-maybe": "^0.2.0"
   },
   "dependencies": {
     "react": "^15.4.2",
