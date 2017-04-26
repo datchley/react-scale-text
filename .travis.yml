@@ -17,6 +17,7 @@ script:
 before_install:
   - npm i -g makeshift && makeshift -s @datchley -r https://registry.npmjs.org
 after_success:
+  - ls cov/*
   - npm run test:cov
 deploy:
   provider: npm
