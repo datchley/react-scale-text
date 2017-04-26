@@ -44,7 +44,6 @@ describe('ScaleText', () => {
   before(() => {
     windowWidth = window.outerWidth;
     windowHeight = window.outerHeight;
-    console.log(`[window] (before) ${windowWidth}x${windowHeight}`);
   });
 
   afterEach((done) => {
@@ -79,15 +78,11 @@ describe('ScaleText', () => {
     try {
       await wait(200);
       const before = getFontSize(child);
-      console.log(`[window] ${window.innerWidth}x${window.innerHeight}`);
-      console.log(`[font-size] ${before}`);
       window.resizeTo(windowWidth / 2, windowHeight / 2);
 
       await wait(200);
       wrapper.update();
       const after = getFontSize(child);
-      console.log(`[window] ${window.innerWidth}x${window.innerHeight}`);
-      console.log(`[font-size] ${after}`);
       expect(parseFloat(before)).to.be.greaterThan(parseFloat(after));
       expect(isOverflowing(wrapper.getDOMNode())).to.be.false;
 
@@ -119,13 +114,11 @@ describe('ScaleText', () => {
     try {
       await wait(200);
       const before = getFontSize(child);
-      console.log(`[font-size] ${before}`);
       window.resizeTo(40, 40);
 
       await wait(200);
       wrapper.update();
       const after = getFontSize(child);
-      console.log(`[font-size] ${after}`);
       expect(parseFloat(after)).to.be.greaterThan(15);
 
       wrapper.detach();
