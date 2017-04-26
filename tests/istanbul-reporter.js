@@ -5,6 +5,7 @@ var fs = require('fs');
 
 function Istanbul(runner) {
   runner.on('end', () => {
+    console.log('[runner end] outputing to reporter...');
     const mainReporter = istanbulAPI.createReporter();
     const coverageMap = libCoverage.createCoverageMap();
 
