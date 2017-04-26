@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import warn from 'warning';
-import { setRef, getStyle, css, uniqId, getFillSize } from './utils';
+import shallowEqual from './shallow-equal';
+import getFillSize from './get-fillsize';
+import { getStyle, css, uniqId } from './dom-utils';
 
 class ScaleText extends Component {
   constructor(props) {
@@ -23,6 +25,7 @@ class ScaleText extends Component {
 
   componentDidMount() {
     const { children } = this.props;
+    this._mounted = true;
     this._invalidChild = React.Children.count(children) > 1;
 
     warn(!this._invalidChild,
@@ -35,7 +38,13 @@ class ScaleText extends Component {
       this.resize();
       window.addEventListener('resize', this._handleResize);
     }
-    this._mounted = true;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // compare children's props for change
+    if (!shallowEqual(prevProps.children.props, this.props.children.props)) {
+      this.resize();
+    }
   }
 
   componentWillUnmount() {
@@ -55,6 +64,8 @@ class ScaleText extends Component {
 
   resize() {
     const { minFontSize, maxFontSize } = this.props;
+    console.log(`[resize()]: _mounted?=${this._mounted}, _wrapper?=${typeof this._wrapper}`);
+    if (!this._mounted || !this._wrapper) return;
     if (this.ruler) {
       this.clearRuler();
     }
@@ -104,11 +115,10 @@ class ScaleText extends Component {
         'inherit'
     };
 
-    console.log('[render] font-size:', fontSize);
     return (
       <div
         className="scaletext-wrapper"
-        ref={setRef('_wrapper', this)}
+        ref={(c) => { this._wrapper = c; }}
         style={style}
       >
         {
