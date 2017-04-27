@@ -1,7 +1,7 @@
 # React ScaleText Component
 
 [![NPM Version](https://img.shields.io/npm/v/react-scale-text.svg)](https://www.npmjs.com/package/react-scale-text)
-[![Coverage Status](https://coveralls.io/repos/github/datchley/react-scale-text/badge.svg?branch=master)](https://coveralls.io/github/datchley/react-scale-text?branch=master)
+
 [![Build Status](https://travis-ci.org/datchley/react-scale-text.svg?branch=master)](https://travis-ci.org/datchley/react-scale-text)
 [![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
 
