@@ -27,17 +27,9 @@ const getFontSize = el => parseFloat(window.getComputedStyle(el).fontSize, 10);
 const resetWindowSize = () => window.resizeTo(windowWidth, windowHeight);
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-/* eslint-disable no-param-reassign */
-const getStyles = styleProp =>
-  styleProp.split(/\s*;\s*/).reduce((styles, s) => {
-    const [prop, val] = s.split(/\s*:\s*/);
-    if (!prop) return styles;
-    styles[prop.trim()] = val.trim();
-    return styles;
-  }, {});
-/* eslint-enable no-param-reassign */
-
+//
 // Tests
+//
 
 describe('ScaleText', () => {
 
