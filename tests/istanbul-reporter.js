@@ -11,7 +11,7 @@ function Istanbul(runner) {
 
     coverageMap.merge(global.__coverage__ || {});
     // coverageMap.merge(window.__coverage__ || {});
-    fs.writeFileSync(path.resolve(process.cwd(), 'coverage/coverage.json'), JSON.stringify(global.__coverage__));
+    fs.writeFileSync(path.resolve(process.cwd(), 'coverage/coverage.json'), JSON.stringify(global.__coverage__ || {}));
 
     mainReporter.addAll(['text', 'html']);
     mainReporter.write(coverageMap, {});
