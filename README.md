@@ -1,7 +1,10 @@
 # React ScaleText Component
 
+[![NPM Version](https://img.shields.io/npm/v/react-scale-text.svg)](https://www.npmjs.com/package/react-scale-text)
 [![Coverage Status](https://coveralls.io/repos/github/datchley/react-scale-text/badge.svg?branch=master)](https://coveralls.io/github/datchley/react-scale-text?branch=master)
 [![Build Status](https://travis-ci.org/datchley/react-scale-text.svg?branch=master)](https://travis-ci.org/datchley/react-scale-text)
+[![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
+
 
 `ScaleText` is a component that allows for dynamically sizing the text within a given component to fit its parent container's width and height. It should work with various positioning and should scale the text smoothly.  The scaling of an elements text is done on initial render, and then triggered again from a window resize, which should keep the child element's text scaled to the parent's dimensions.
 

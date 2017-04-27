@@ -2,12 +2,24 @@ sudo: false
 language: node_js
 node_js:
   - stable
+addons:
+  apt:
+    packages:
+      - xvfb
+install:
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+  - npm install
+before_script:
+  - export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start
 script:
   - npm test
 before_install:
   - npm i -g makeshift && makeshift -s @datchley -r https://registry.npmjs.org
 after_success:
+  - export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start
   - npm run test:cov
+  - ls cov/*
 deploy:
   provider: npm
   email: david.m.atchley@gmail.com

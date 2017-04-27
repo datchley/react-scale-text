@@ -5,14 +5,17 @@
   "main": "lib/react-scale-text.js",
   "module": "lib/index.js",
   "scripts": {
-    "clean": "rimraf lib coverage",
+    "clean": "rimraf lib coverage cov",
     "build": "babel src --out-dir lib --ignore __tests__,__mocks__ && npm run build:umd",
     "build:umd": "webpack && NODE_ENV=production webpack",
     "build:analyze": "webpack --json > ./lib/build-stats.json",
-    "lint": "eslint src examples",
-    "test": "jest --env=jsdom",
-    "test:watch": "jest --env=jsdom --watch",
-    "test:cov": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "lint": "eslint src",
+    "test": "npm run test:mocha",
+    "test:cov": "npm run instrument && npm run test:mocha-cov && npm run coverage",
+    "test:mocha": "electron-mocha ./tests/**/*.spec.js* --renderer --compilers js:babel-core/register --timeout 10000",
+    "test:mocha-cov": "electron-mocha ./tests/**/*.spec.js* --renderer --compilers js:babel-core/register --timeout 5000 -r ./tests/coverage.js",
+    "instrument": "babel-istanbul instrument src --output cov --no-compact --complete-copy --es-modules",
+    "coverage": "babel-istanbul report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "prepublish": "npm run lint && npm run test && npm run clean && npm run build && npm run build:umd",
     "release": "standard-version"
   },
@@ -30,55 +33,57 @@
   },
   "homepage": "https://github.com/datchley/react-scale-text",
   "devDependencies": {
-    "ava": "^0.16.0",
+    "ava": "^0.18.2",
     "babel-cli": "^6.4.5",
     "babel-core": "^6.4.5",
-    "babel-eslint": "^6.1.2",
-    "babel-jest": "^10.0.2",
+    "babel-eslint": "^7.2.1",
+    "babel-istanbul": "^0.12.2",
+    "babel-jest": "^19.0.0",
     "babel-loader": "^6.2.1",
+    "babel-plugin-istanbul": "^4.1.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
+    "chai": "^3.5.0",
+    "chai-enzyme": "^0.6.1",
+    "chai-jsx": "^1.0.1",
     "co-exec": "^1.0",
-    "codecov": "^1.0.1",
+    "codecov": "^2.1.0",
     "coveralls": "^2.11.8",
+    "electron": "^1.6.6",
+    "electron-mocha": "^3.4.0",
     "enzyme": "^2.7.1",
     "enzyme-to-json": "^1.4.5",
-    "eslint": "^2.3.0",
-    "eslint-config-airbnb": "^6.0.2",
-    "eslint-plugin-react": "^4.1.0",
-    "ghooks": "^1.2.4",
+    "eslint": "^3.18.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "ghooks": "^2.0.0",
+    "invariant": "^2.2.2",
+    "istanbul": "^0.4.5",
+    "istanbul-api": "^1.1.7",
+    "istanbul-lib-coverage": "^1.0.2",
     "jest": "^19.0.2",
+    "jest-mock": "^19.0.0",
+    "jest-util": "^19.0.2",
     "jsdom": "^9.12.0",
     "nyc": "^10.0.0",
-    "react-addons-test-utils": "^15.0.1",
-    "react-dom": "^15.0.1",
+    "querystring": "^0.2.0",
+    "react-addons-test-utils": "^15.4.2",
     "rimraf": "^2.5.0",
-    "standard": "^8.4.0",
+    "standard": "^9.0.2",
     "standard-version": "^4.0.0",
     "travis": "^0.1.1",
-    "webpack": "^1.12.11",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^2.3.2",
+    "webpack-dev-server": "^2.4.2",
+    "xvfb-maybe": "^0.2.0"
   },
   "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
     "lodash": "^4.17.4",
-    "react": "^15.0.1"
-  },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "unmockedModulePathPatterns": [
-      "react",
-      "react-dom",
-      "react-addons-test-utils",
-      "enzyme"
-    ]
-  },
-  "config": {
-    "ghooks": {
-      "pre-commit": "npm run standard"
-    }
+    "warning": "^3.0.0",
+    "shortid": "^2.2.8"
   }
 }
