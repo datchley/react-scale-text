@@ -17,7 +17,8 @@
     "instrument": "babel-istanbul instrument src --output cov --no-compact --complete-copy --es-modules",
     "coverage": "babel-istanbul report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "prepublish": "npm run lint && npm run test && npm run clean && npm run build && npm run build:umd",
-    "release": "standard-version"
+    "release": "standard-version",
+    "start": "cd examples/simple && npm start"
   },
   "repository": {
     "type": "git",
