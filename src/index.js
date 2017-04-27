@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import warn from 'warning';
+import { generate as shortId } from 'shortid';
 import shallowEqual from './shallow-equal';
 import getFillSize from './get-fillsize';
-import { getStyle, css, uniqId } from './dom-utils';
+import { getStyle, css } from './dom-utils';
 
 class ScaleText extends Component {
   constructor(props) {
@@ -78,7 +79,7 @@ class ScaleText extends Component {
   createRuler() {
     // Create copy of wrapper for sizing
     this.ruler = this._wrapper.cloneNode(true);
-    this.ruler.id = uniqId();
+    this.ruler.id = shortId();
     css(this.ruler, {
       position: 'absolute',
       top: '0px',

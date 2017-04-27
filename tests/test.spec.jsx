@@ -3,7 +3,6 @@ import chai, { expect } from 'chai';
 import { render, mount } from 'enzyme';
 import chaiEnzyme from 'chai-enzyme';
 import chaiJsx from 'chai-jsx';
-import Hello from './hello';
 import ScaleText from '../src/index';
 
 chai.use(chaiEnzyme());

@@ -10,16 +10,11 @@
     "build:umd": "webpack && NODE_ENV=production webpack",
     "build:analyze": "webpack --json > ./lib/build-stats.json",
     "lint": "eslint src",
-    "old:test": "jest --env=jsdom",
-    "old:test:watch": "jest --env=jsdom --watch",
-    "old:test:cov": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test": "npm run test:mocha",
-    "tmp:test:cov": "npm run test:instrument && npm run test:mocha-cov && npm run coverage",
-    "test:cov": "npm run test:instrument && npm run test:mocha-cov && npm run coverage",
-    "test:instrument": "babel-istanbul instrument src --output cov --no-compact --complete-copy --es-modules",
+    "test:cov": "npm run instrument && npm run test:mocha-cov && npm run coverage",
     "test:mocha": "electron-mocha ./tests/**/*.spec.js* --renderer --compilers js:babel-core/register --timeout 10000",
-    "tmp:test:mocha-cov": "npm run test:mocha -- -r ./tests/coverage.js -R ./tests/istanbul-reporter.js",
     "test:mocha-cov": "electron-mocha ./tests/**/*.spec.js* --renderer --compilers js:babel-core/register --timeout 5000 -r ./tests/coverage.js",
+    "instrument": "babel-istanbul instrument src --output cov --no-compact --complete-copy --es-modules",
     "coverage": "babel-istanbul report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "prepublish": "npm run lint && npm run test && npm run clean && npm run build && npm run build:umd",
     "release": "standard-version"
@@ -88,7 +83,8 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "lodash": "^4.17.4",
-    "warning": "^3.0.0"
+    "warning": "^3.0.0",
+    "shortid": "^2.2.8"
   },
   "jest": {
     "testEnvironment": "jsdom",
