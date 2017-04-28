@@ -18,6 +18,7 @@ module.exports = {
     new webpack.NoErrorsPlugin()
   ],
   resolve: {
+    root: [ './', './node_modules' ],
     extensions: ['', '.js']
   },
   module: {
@@ -28,7 +29,14 @@ module.exports = {
       include: __dirname
     }, {
       test: /\.js$/,
-      loaders: ['babel'],
+      loader: 'babel',
+      query: {
+        babelrc: false,
+        presets: ['es2015', 'react'],
+        plugins: [
+          "transform-object-rest-spread"
+        ]
+      },
       include: path.join(__dirname, '..', '..', 'src')
     }]
   }
