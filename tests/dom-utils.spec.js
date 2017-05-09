@@ -1,5 +1,5 @@
 import chai, { expect } from 'chai';
-import { camelize, css, getStyle } from '../src/dom-utils';
+import { camelize, css, getStyle, getOverflow } from '../src/dom-utils';
 
 describe('dom util functions', () => {
 
@@ -56,4 +56,64 @@ describe('dom util functions', () => {
     });
   });
 
+  describe('getOverflow', () => {
+    it('properly detects element overflow', () => {
+        // setup some common styles we can use to build our test divs
+        const standard = { position: 'static' };
+        const absolute = { position: 'absolute', top: '0px', left: '0px' };
+        const relative = { position: 'relative', top: '0px', left: '0px' };
+        const boxStyles = {
+          display: 'inline-block',
+          padding: '5px',
+          overflow: 'hidden',
+          width: '120px',
+          height: '120px'
+        };
+        const contentStyles = {
+          padding: '2px',
+          whiteSpace: 'nowrap'
+        };
+        const iterations = [
+          [standard, standard],
+          [standard, absolute],
+          [standard, relative],
+          [relative, absolute],
+          [absolute, relative],
+          [absolute, absolute]
+        ];
+        const overflows = [
+          [true, false],
+          [false, false], // always fail absolute child in static parent
+          [true, false],
+          [true, false],
+          [true, false],
+          [true, false]
+        ];
+
+        // our test div container
+        const container = document.createElement('div');
+
+        // making divs....
+        for (let [parent, child] of iterations) {
+          const box = document.createElement('div');
+          css(box, { ...boxStyles, ...parent });
+          box.className = "box";
+          const content = document.createElement('p');
+          content.textContent = 'test content which overflows container';
+          css(content, { ...contentStyles, ...child });
+          box.appendChild(content);
+          container.appendChild(box);
+        }
+        document.body.appendChild(container);
+
+        // gather up our test divs
+        const boxes = document.querySelectorAll('.box');
+
+        for (let i in Array.from(boxes)) {
+          const box = boxes[i];
+          const expected = overflows[i];
+          expect(getOverflow(box)).to.eql(expected);
+        }
+    })
+  })
 });

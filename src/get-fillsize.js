@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+import { getOverflow } from './dom-utils';
 
 // Determine the font-size to set on the element `el` that will
 // allow the first child of that element to fill the maximum height
@@ -17,11 +18,7 @@ export default function getFillSize(el, minFontSize, maxFontSize, factor = 1) {
 
   while (!complete) {
     el.style.fontSize = `${fontSize}px`;
-    const wrap = el.getBoundingClientRect();
-    const child = el.firstChild.getBoundingClientRect();
-
-    const overflowHeight = ((wrap.top > child.top) || (wrap.bottom < child.bottom));
-    const overflowWidth = ((wrap.left > child.left) || (wrap.right < child.right));
+    const [overflowWidth, overflowHeight] = getOverflow(el);
 
     if (overflowHeight || overflowWidth) {
       if (fontSize <= minFontSize) {

@@ -19,11 +19,14 @@ CenteredText.propTypes = {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { custom: 'custom' };
+    this.state = {
+      custom: 'custom',
+      custom2: '24000'
+    };
   }
 
   render() {
-    const { custom } = this.state;
+    const { custom, custom2 } = this.state;
     return (
       <div>
         <div className="box-container">
@@ -79,15 +82,26 @@ class App extends Component {
               <CenteredText text={custom} />
             </ScaleText>
           </div>
+          <div className="box">
+            <ScaleText>
+              <div>{custom2}</div>
+            </ScaleText>
+          </div>
         </div>
         <div>
           <hr />
           Resizing based on prop changes:<br />
-          <input
+          Custom 1: <input
             type="text"
             size="40"
             value={custom}
             onChange={ev => this.setState({ custom: ev.target.value })}
+          /><br />
+          Custom 2: <input
+            type="text"
+            size="40"
+            value={custom2}
+            onChange={ev => this.setState({ custom2: ev.target.value })}
           />
         </div>
       </div>

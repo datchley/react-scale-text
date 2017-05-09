@@ -35,3 +35,13 @@ export function getStyle(el, styleProp) {
   }
   return el.style[camelize(styleProp)];
 }
+
+export function getOverflow(el) {
+  return [
+    el.clientWidth < el.scrollWidth,
+    el.clientHeight < el.scrollHeight
+  ];
+}
+
+export const hasOverflow = el => getOverflow(el).some(v => v === true);
+
