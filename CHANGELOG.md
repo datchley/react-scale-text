@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/datchley/react-scale-text/compare/v1.0.9...v1.1.0) (2017-05-09)
+
+
+### Bug Fixes
+
+* **demo:** fixes for getting demo running standalone ([c45a99e](https://github.com/datchley/react-scale-text/commit/c45a99e))
+* **demo:** fixes for standalone demo ([46c26dc](https://github.com/datchley/react-scale-text/commit/46c26dc))
+* **demo:** still trying to setup demo to run hosted somewhere (hacky) ([24852b2](https://github.com/datchley/react-scale-text/commit/24852b2))
+* **resize:** correct check for overflow in wrapper ([#5](https://github.com/datchley/react-scale-text/issues/5)) ([cf738ef](https://github.com/datchley/react-scale-text/commit/cf738ef))
+
+
+### Features
+
+* **demo:** allow for staring example demo from top level ([79def06](https://github.com/datchley/react-scale-text/commit/79def06))
+* **demo:** setting up commands to start demo server when deployed ([c81cc03](https://github.com/datchley/react-scale-text/commit/c81cc03))
+
+
+
 <a name="1.0.9"></a>
 ## [1.0.9](https://github.com/datchley/react-scale-text/compare/v1.0.8...v1.0.9) (2017-04-27)
 
