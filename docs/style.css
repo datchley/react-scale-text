@@ -1,0 +1,170 @@
+html,body {
+  font-family: Roboto,sans-serif;
+  font-weight: 400;
+  line-height: 1.42857;
+}
+
+*:before, *:after {
+  box-sizing: border-box;
+}
+
+html,body {
+  margin: 15px;
+}
+
+body {
+  font-family: 'Source Sans Pro', 'Lucida Grande', sans-serif;
+}
+
+p > code {
+    color: #d25353;
+    font-size: 1.2rem;
+    padding: 0 2px;
+}
+
+p.callout {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 16px;
+  background-color: #f5f5f5;
+  color: #666;
+  font-style: italic;
+  font-size: .8em;
+
+}
+
+.example-parent {
+  display: inline-block;
+  width: calc(100px + 5vw);
+  height: calc(100px + 5vw);
+}
+
+.example-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  min-height: calc(150px + 5vw);
+  flex-wrap: wrap;
+}
+.col {
+  position: relative;
+  flex: 1 1 50%;
+  min-height: calc(150px + 2vw);
+}
+.inline-example {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+/*.code code pre {
+  font-family: monospace;
+  white-space: pre-wrap;
+}*/
+
+label {
+  font-size: .8em;
+  color: #4e5a5e;
+  font-weight: 200;
+}
+.label {
+  color: #969896;
+}
+.label:after,
+.label:before {
+    content: '\A';
+    white-space: pre;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  padding: .3rem;
+  font-size: .8rem;
+  border-color: #D0D8DB;
+  background-color: #fff;
+  line-height: normal;
+  border: 1px solid #D0D8DB;
+  border-radius: .1875rem;
+  outline: 0;
+  color: #4E5A5E;
+  -webkit-appearance: none;
+}
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #ccc;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #ccc;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #ccc;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #ccc;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+   color:    #ccc;
+}
+
+
+.box-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+}
+
+.box {
+  display: inline-block;
+  position: relative;
+  width: calc(100px + 7vw);
+  height: calc(100px + 7vw);
+  border: 1px solid #ccc;
+  padding: 4px;
+  border-radius: 4px;
+  margin: 2px;
+  font-size: 1em;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.small {
+  font-size: .5em;
+  color: #ccc;
+}
+
+.example-footer {
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid #ccc;
+}
+.controls {
+  flex: 1 0 50%;
+}
+.code {
+  flex: 1 0 50%;
+}
+
+p.description {
+    font-size: .8em;
+    color: gray;
+    font-style: italic;
+}
+
+pre[class*=language-] {
+  padding: 0px;
+}
+
+code[class*=language-],
+pre[class*=language-] {
+  font-size: .8rem;
+}
