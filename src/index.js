@@ -43,7 +43,9 @@ class ScaleText extends Component {
 
   componentDidUpdate(prevProps) {
     // compare children's props for change
-    if (!shallowEqual(prevProps.children.props, this.props.children.props)) {
+    if (!shallowEqual(prevProps.children.props, this.props.children.props) ||
+         prevProps.children !== this.props.children ||
+         prevProps !== this.props) {
       this.resize();
     }
   }
@@ -70,10 +72,17 @@ class ScaleText extends Component {
       this.clearRuler();
     }
     this.createRuler();
+
+    const fontSize = getFillSize(
+      this.ruler,
+      minFontSize || Number.NEGATIVE_INFINITY,
+      maxFontSize || Number.POSITIVE_INFINITY
+    );
     this.setState({
-      size: getFillSize(this.ruler, minFontSize, maxFontSize),
+      size: parseFloat(fontSize, 10),
       complete: true
     });
+    this.clearRuler();
   }
 
   createRuler() {
@@ -131,15 +140,14 @@ class ScaleText extends Component {
 
 ScaleText.propTypes = {
   children: PropTypes.node.isRequired,
-  minFontSize: PropTypes.number,
-  maxFontSize: PropTypes.number
+  minFontSize: PropTypes.number.isRequired,
+  maxFontSize: PropTypes.number.isRequired
 };
 
 ScaleText.defaultProps = {
   minFontSize: Number.NEGATIVE_INFINITY,
   maxFontSize: Number.POSITIVE_INFINITY
 };
-
 
 // export default ScaleText;
 module.exports = ScaleText;
