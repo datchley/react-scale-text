@@ -8,6 +8,8 @@
 
 `ScaleText` is a component that allows for dynamically sizing the text within a given component to fit its parent container's width and height. It should work with various positioning and should scale the text smoothly.  The scaling of an elements text is done on initial render, and then triggered again from a window resize, which should keep the child element's text scaled to the parent's dimensions.
 
+View [demo](https://datchley.github.io/react-scale-text/) page.
+
 # Installation
 
 Install as npm module and then Use via `import` or `require`
