@@ -78,11 +78,13 @@ class ScaleText extends Component {
       minFontSize || Number.NEGATIVE_INFINITY,
       maxFontSize || Number.POSITIVE_INFINITY
     );
+
     this.setState({
       size: parseFloat(fontSize, 10),
       complete: true
+    }, () => {
+      this.clearRuler();
     });
-    this.clearRuler();
   }
 
   createRuler() {
@@ -101,6 +103,7 @@ class ScaleText extends Component {
 
   clearRuler() {
     document.body.removeChild(this.ruler);
+    this.ruler = null;
   }
 
   render() {

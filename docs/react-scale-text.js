@@ -703,6 +703,7 @@ var ScaleText = function (_Component) {
 
     _this._handleResize = function () {
       if (!_this._resizing) {
+        console.log('-> [start] resizing');
         requestAnimationFrame(_this.handleResize.bind(_this));
       }
       _this._resizing = true;
@@ -754,22 +755,31 @@ var ScaleText = function (_Component) {
   }, {
     key: 'resize',
     value: function resize() {
+      var _this2 = this;
+
+      console.log('[resize()] called');
       var _props = this.props,
           minFontSize = _props.minFontSize,
           maxFontSize = _props.maxFontSize;
 
       if (!this._mounted || !this._wrapper) return;
       if (this.ruler) {
+        console.log('[resize] [start] clearing ruler');
         this.clearRuler();
       }
+      console.log('[resize] creating ruler');
       this.createRuler();
 
       var fontSize = (0, _getFillsize2.default)(this.ruler, minFontSize || Number.NEGATIVE_INFINITY, maxFontSize || Number.POSITIVE_INFINITY);
+
+      console.log('[resize] setting font to ' + fontSize + 'px');
       this.setState({
         size: parseFloat(fontSize, 10),
         complete: true
+      }, function () {
+        console.log('[resize] [end] clearing ruler');
+        _this2.clearRuler();
       });
-      this.clearRuler();
     }
   }, {
     key: 'createRuler',
@@ -790,11 +800,12 @@ var ScaleText = function (_Component) {
     key: 'clearRuler',
     value: function clearRuler() {
       document.body.removeChild(this.ruler);
+      this.ruler = null;
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var fontSize = this.state.size;
       var children = this.props.children;
@@ -822,7 +833,7 @@ var ScaleText = function (_Component) {
         {
           className: 'scaletext-wrapper',
           ref: function ref(c) {
-            _this2._wrapper = c;
+            _this3._wrapper = c;
           },
           style: style
         },
