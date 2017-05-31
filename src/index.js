@@ -102,7 +102,9 @@ class ScaleText extends Component {
   }
 
   clearRuler() {
-    document.body.removeChild(this.ruler);
+    if (this.ruler) {
+      document.body.removeChild(this.ruler);
+    }
     this.ruler = null;
   }
 
