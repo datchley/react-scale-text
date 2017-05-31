@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.2"></a>
+## [1.1.2](https://github.com/datchley/react-scale-text/compare/v1.1.1...v1.1.2) (2017-05-31)
+
+
+### Bug Fixes
+
+* wrapped `removeChild` call in clearRuler in conditional to ensure we don't get NotFoundError thrown if ruler DOM element was already removed. ([#8](https://github.com/datchley/react-scale-text/issues/8)) ([1cccba0](https://github.com/datchley/react-scale-text/commit/1cccba0))
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/datchley/react-scale-text/compare/v1.1.0...v1.1.1) (2017-05-27)
 
