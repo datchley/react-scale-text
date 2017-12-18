@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import warn from 'warning';
 import { generate as shortId } from 'shortid';
 import shallowEqual from './shallow-equal';

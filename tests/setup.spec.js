@@ -1,7 +1,11 @@
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });
+
 /*
  * Global setup/hooks for mocha
  */
-
 after(function() {
   if (window.__coverage__) {
     console.log('Found coverage report, writing to coverage/coverage.json');

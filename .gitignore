@@ -6,3 +6,4 @@ lib
 cov/
 coverage/
 .vscode/*
+.idea/

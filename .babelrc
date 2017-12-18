@@ -1,6 +1,6 @@
 {
-  "presets": ["es2015", "react"],
-  "plugins": ["transform-object-rest-spread"],
+  "presets": ["@babel/preset-es2015", "@babel/preset-react"],
+  "plugins": ["@babel/plugin-transform-spread", "@babel/plugin-transform-destructuring", "@babel/plugin-proposal-object-rest-spread"],
   "ignore": [
     "__mocks__/**/*.js",
     "__tests__/**/*.js"
