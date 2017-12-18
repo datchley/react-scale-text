@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.4"></a>
+## [1.1.4](https://github.com/datchley/react-scale-text/compare/v1.1.2...v1.1.4) (2017-12-18)
+
+
+### Bug Fixes
+
+* update dependencies to support React 16 ([#12](https://github.com/datchley/react-scale-text/issues/12)) ([fce106d](https://github.com/datchley/react-scale-text/commit/fce106d))
+
+
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/datchley/react-scale-text/compare/v1.1.1...v1.1.2) (2017-05-31)
 
