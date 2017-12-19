@@ -67,7 +67,7 @@ class ScaleText extends Component {
   }
 
   resize() {
-    const { minFontSize, maxFontSize } = this.props;
+    const { minFontSize, maxFontSize, widthOnly } = this.props;
     if (!this._mounted || !this._wrapper) return;
     if (this.ruler) {
       this.clearRuler();
@@ -77,7 +77,8 @@ class ScaleText extends Component {
     const fontSize = getFillSize(
       this.ruler,
       minFontSize || Number.NEGATIVE_INFINITY,
-      maxFontSize || Number.POSITIVE_INFINITY
+      maxFontSize || Number.POSITIVE_INFINITY,
+      widthOnly
     );
 
     this.setState({
@@ -111,7 +112,11 @@ class ScaleText extends Component {
 
   render() {
     const { size: fontSize } = this.state;
-    const { children } = this.props;
+    const { children, widthOnly } = this.props;
+
+    const overflowStyle = widthOnly ?
+      { overflowY: 'visible', overflowX: 'hidden', height: 'auto' } :
+      { overflow: 'hidden' };
 
     const child = React.isValidElement(children) ?
       React.Children.only(children) :
@@ -121,7 +126,8 @@ class ScaleText extends Component {
       fontSize: fontSize ? `${fontSize.toFixed(2)}px` : 'inherit',
       width: '100%',
       height: '100%',
-      overflow: 'hidden'
+      ...overflowStyle
+      // overflow: 'hidden'
     };
 
     const childProps = {
@@ -147,12 +153,14 @@ class ScaleText extends Component {
 ScaleText.propTypes = {
   children: PropTypes.node.isRequired,
   minFontSize: PropTypes.number.isRequired,
-  maxFontSize: PropTypes.number.isRequired
+  maxFontSize: PropTypes.number.isRequired,
+  widthOnly: PropTypes.boolean
 };
 
 ScaleText.defaultProps = {
   minFontSize: Number.NEGATIVE_INFINITY,
-  maxFontSize: Number.POSITIVE_INFINITY
+  maxFontSize: Number.POSITIVE_INFINITY,
+  widthOnly: false
 };
 
 // export default ScaleText;

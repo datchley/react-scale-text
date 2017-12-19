@@ -4,13 +4,10 @@ import { getOverflow } from './dom-utils';
 // Determine the font-size to set on the element `el` that will
 // allow the first child of that element to fill the maximum height
 // and width without causing overflow
-export default function getFillSize(el, minFontSize, maxFontSize, factor = 1) {
+export default function getFillSize(el, minFontSize, maxFontSize, widthOnly = false, factor = 1) {
   // Make an initial guess at font-size that fits width
   let fontSize = Math.min(
-    Math.max(
-      Math.min(Number(el.offsetWidth) / (factor * 10), maxFontSize),
-      minFontSize
-    )
+    Math.max(Math.min(Number(el.offsetWidth) / (factor * 10), maxFontSize), minFontSize)
   );
 
   const step = 1;
@@ -20,7 +17,7 @@ export default function getFillSize(el, minFontSize, maxFontSize, factor = 1) {
     el.style.fontSize = `${fontSize}px`;
     const [overflowWidth, overflowHeight] = getOverflow(el);
 
-    if (overflowHeight || overflowWidth) {
+    if (!widthOnly && (overflowHeight || overflowWidth)) {
       if (fontSize <= minFontSize) {
         fontSize = minFontSize;
         complete = true;
@@ -29,6 +26,10 @@ export default function getFillSize(el, minFontSize, maxFontSize, factor = 1) {
         fontSize -= step;
         complete = true;
       }
+    }
+    else if (widthOnly && overflowWidth) {
+      fontSize -= step;
+      complete = true;
     }
     else if (fontSize >= maxFontSize) {
       fontSize = maxFontSize;

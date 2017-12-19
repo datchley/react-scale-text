@@ -1,85 +1,113 @@
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>react-scale-text</title>
-    <!-- styles -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" />
-    <link href="https://raw.githubusercontent.com/LukeAskew/prism-github/master/prism-github.css" rel="stylesheet" />
-    <link href="./style.css" rel="stylesheet" />
-    <!-- scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-with-addons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js"></script>
-    <!-- <script src="https://unpkg.com/react-scale-text@latest/lib/react-scale-text.js"></script> -->
-    <script src="./react-scale-text.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
-  </head>
-  <body>
-    <h1>ScaleText Component Demos</h1>
-    <p class="callout">
-      You can resize the browser window to see the font-size scale dynamically for any of the examples below. Interactive
-      examples will dynamically resize based on inputs and window resizing.
-    </p>
-    <p>
-      <code>ScaleText</code> is a React component that allows you to wrap another element or component whose content's
-      font size you want to scale as the page (<em>browser window</em>) is resized, or the component's props change.
-      <code>ScaleText</code> will dynamically set the largest possible font-size that still allows your wrapped
-      element's dimensions not to overflow it's parent element.
-    </p>
-    <p>
-      <code>ScaleText</code> simply takes a single child component and will increase the font size of that component
-      until it detects overflow and then scale it back to fit the element.  The scaling will depend on how you style
-      your child components, but any <code>static</code> or <code>relative</code>ly positioned children should properly
-      size themselves as the font changes.
-    </p>
-    <p>
-      The parent is the element that contains the <code>ScaleText</code> wrapped element. For example, you can scale
-      simple text by composing it within <code>&lt;ScaleText&gt;</code>.
-    </p>
-    <div class="example-grid">
-      <div class="col">
-        <pre><code class="language-html">
+
+<head>
+  <meta charset="utf-8" />
+  <title>react-scale-text</title>
+  <!-- styles -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" />
+  <link href="https://raw.githubusercontent.com/LukeAskew/prism-github/master/prism-github.css" rel="stylesheet" />
+  <link href="./style.css" rel="stylesheet" />
+  <!-- scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-with-addons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js"></script>
+  <!-- <script src="https://unpkg.com/react-scale-text@latest/lib/react-scale-text.js"></script> -->
+  <script src="./react-scale-text.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+</head>
+
+<body>
+  <h1>ScaleText Component Demos</h1>
+  <p class="callout">
+    You can resize the browser window to see the font-size scale dynamically for any of the examples below. Interactive examples
+    will dynamically resize based on inputs and window resizing.
+  </p>
+  <p>
+    <code>ScaleText</code> is a React component that allows you to wrap another element or component whose content's font size you want to scale
+    as the page (
+    <em>browser window</em>) is resized, or the component's props change.
+    <code>ScaleText</code> will dynamically set the largest possible font-size that still allows your wrapped element's dimensions not to overflow
+    it's parent element.
+  </p>
+  <p>
+    <code>ScaleText</code> simply takes a single child component and will increase the font size of that component until it detects overflow and
+    then scale it back to fit the element. The scaling will depend on how you style your child components, but any
+    <code>static</code> or
+    <code>relative</code>ly positioned children should properly size themselves as the font changes.
+  </p>
+  <p>
+    The parent is the element that contains the
+    <code>ScaleText</code> wrapped element. For example, you can scale simple text by composing it within
+    <code>&lt;ScaleText&gt;</code>.
+  </p>
+  <div class="example-grid">
+    <div class="col">
+      <pre><code class="language-html">
   &lt;div className="parent"&gt;
     &lt;ScaleText>example&lt;/ScaleText&gt;
   &lt;/div&gt;
         </code></pre>
-      </div>
-      <div class="col">
-        <div id="example-one" class="inline-example"></div>
-      </div>
     </div>
+    <div class="col">
+      <div id="example-one" class="inline-example"></div>
+    </div>
+  </div>
 
-    <p>
-      You can also use a component as the composed child of <code>ScaleText</code> as well. If you use
-      this method, <code>ScaleText</code> will pass an extra prop to your component named <code>fontSize</code>,
-      which will be the numeric font size (<em>in pixels</em>) that ScaleText is setting for your wrapped
-      component.
-    </p>
-    <div class="example-grid">
-      <div class="col">
-        <pre><code class="language-html">
+  <p>
+    You can also use a component as the composed child of
+    <code>ScaleText</code> as well. If you use this method,
+    <code>ScaleText</code> will pass an extra prop to your component named
+    <code>fontSize</code>, which will be the numeric font size (
+    <em>in pixels</em>) that ScaleText is setting for your wrapped component.
+  </p>
+  <div class="example-grid">
+    <div class="col">
+      <pre><code class="language-html">
   &lt;div className="parent"&gt;
     &lt;ScaleText>
       &lt;MyComponent&gt;example&lt;/MyComponent&gt;
     &lt;/ScaleText&gt;
   &lt;/div&gt;
         </code></pre>
-      </div>
-      <div class="col">
-        <div id="example-two" class="inline-example"></div>
-      </div>
     </div>
+    <div class="col">
+      <div id="example-two" class="inline-example"></div>
+    </div>
+  </div>
 
-    <h2>Interactive Examples</h2>
-    <div id="root"></div>
+  <p>
+    The
+    <code>ScaleText</code> component can also maintain line-height between elements when using the
+    <code>widthOnly</code> prop. This allows the vertical spacing between stacked components to remain consistent as the component scales.
+  </p>
+  <div class="example-grid">
+    <div class="col">
+      <pre><code class="language-html">
+  &lt;div className="parent"&gt;
+    &lt;ScaleText widthOnly={true}>
+      example
+    &lt;/ScaleText&gt;
+  &lt;/div&gt;
+        </code></pre>
+    </div>
+    <div class="col">
+      <div id="example-three" class="full-width-example"></div>
+    </div>
+  </div>
 
-    <!-- scripts -->
-    <script type="text/babel" src="app.js" data-presets="react,es2015"></script>
-    <script type="text/babel" data-presets="react,es2015">
-      const Example = ({ children, ...props }) => (
-        <div className="box">
-          <ScaleText {...props}>{children}</ScaleText>
-        </div>
-      );
+  <h2>Interactive Examples</h2>
+  <div id="root"></div>
+
+  <!-- scripts -->
+  <script type="text/babel" src="app.js" data-presets="react,es2015"></script>
+  <script type="text/babel" data-presets="react,es2015">
+      const Example = ({ children, ...props }) => {
+        const styles = props.widthOnly ? { width: '100%' } : {};
+        return (
+          <div className="box" style={styles}>
+            <ScaleText {...props}>{children}</ScaleText>
+          </div>
+        );
+      };
       const MyComponent = ({ children, fontSize }) => (
         <span className="comp-text centered">
           {children}<br />
@@ -88,7 +116,12 @@
       );
       ReactDOM.render(<Example>example</Example>, document.querySelector('#example-one'));
       ReactDOM.render(<Example><MyComponent>example</MyComponent></Example>, document.querySelector('#example-two'));
+      ReactDOM.render(
+        <Example widthOnly={true}>
+          example
+        </Example>, document.querySelector('#example-three'));
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.23.1/babel.js"></script>
-  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.23.1/babel.js"></script>
+</body>
+
 </html>
