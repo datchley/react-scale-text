@@ -149,7 +149,7 @@ describe('ScaleText', () => {
       await wait(200);
       wrapper.update();
       const after = getFontSize(child);
-      expect(parseFloat(after)).to.be.greaterThan(parseFloat(before));
+      expect(parseFloat(after)).to.be.gte(parseFloat(before));
       expect(isWidthOverflowing(wrapper.getDOMNode())).to.be.false;
       // At most the full width of the container
       expect(parseInt(child.getBoundingClientRect().width)).to.be.at.most(
