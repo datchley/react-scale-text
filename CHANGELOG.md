@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.2"></a>
+## [1.2.2](https://github.com/datchley/react-scale-text/compare/v1.2.1...v1.2.2) (2017-12-27)
+
+
+### Bug Fixes
+
+* corrected invalid PropTypes boolean for widthOnly ([#16](https://github.com/datchley/react-scale-text/issues/16)) ([448919c](https://github.com/datchley/react-scale-text/commit/448919c))
+
+
+
 <a name="1.2.1"></a>
 ## [1.2.1](https://github.com/datchley/react-scale-text/compare/v1.2.0...v1.2.1) (2017-12-20)
 
