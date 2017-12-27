@@ -154,7 +154,7 @@ ScaleText.propTypes = {
   children: PropTypes.node.isRequired,
   minFontSize: PropTypes.number.isRequired,
   maxFontSize: PropTypes.number.isRequired,
-  widthOnly: PropTypes.boolean
+  widthOnly: PropTypes.bool
 };
 
 ScaleText.defaultProps = {
