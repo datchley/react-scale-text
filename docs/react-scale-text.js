@@ -969,6 +969,7 @@ function (_Component) {
       if (this.shouldResize()) {
         this.resize();
         window.addEventListener('resize', this._handleResize);
+        window.addEventListener('load', this._handleResize);
       }
     }
   }, {
@@ -984,6 +985,7 @@ function (_Component) {
     value: function componentWillUnmount() {
       if (!this.shouldResize()) {
         window.removeEventListener('resize', this._handleResize);
+        window.removeEventListener('load', this._handleResize);
       }
     }
   }, {

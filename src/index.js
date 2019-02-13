@@ -39,6 +39,7 @@ class ScaleText extends Component {
     if (this.shouldResize()) {
       this.resize();
       window.addEventListener('resize', this._handleResize);
+      window.addEventListener('load', this._handleResize);
     }
   }
 
@@ -54,6 +55,7 @@ class ScaleText extends Component {
   componentWillUnmount() {
     if (!this.shouldResize()) {
       window.removeEventListener('resize', this._handleResize);
+      window.removeEventListener('load', this._handleResize);
     }
   }
 
