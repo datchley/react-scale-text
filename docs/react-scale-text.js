@@ -1029,11 +1029,23 @@ function (_Component) {
       // Create copy of wrapper for sizing
       this.ruler = this._wrapper.cloneNode(true);
       this.ruler.id = (0, _shortid.generate)();
+      var nodeWidth = '';
+
+      if (this.props.fitParent) {
+        nodeWidth = (0, _domUtils.getStyle)(this._wrapper.parentNode, 'width');
+
+        if (this.props.parentDiff !== undefined) {
+          nodeWidth = "calc(".concat(nodeWidth, " - ").concat(this.props.parentDiff, ")");
+        }
+      } else {
+        nodeWidth = (0, _domUtils.getStyle)(this._wrapper, 'width');
+      }
+
       (0, _domUtils.css)(this.ruler, {
         position: 'absolute',
         top: '0px',
         left: 'calc(100vw * 2)',
-        width: (0, _domUtils.getStyle)(this._wrapper, 'width'),
+        width: nodeWidth,
         height: (0, _domUtils.getStyle)(this._wrapper, 'height')
       });
       document.body.appendChild(this.ruler);
@@ -1055,7 +1067,8 @@ function (_Component) {
       var fontSize = this.state.size;
       var _props2 = this.props,
           children = _props2.children,
-          widthOnly = _props2.widthOnly;
+          widthOnly = _props2.widthOnly,
+          maxFontSize = _props2.maxFontSize;
       var overflowStyle = widthOnly ? {
         overflowY: 'visible',
         overflowX: 'hidden',
@@ -1064,10 +1077,15 @@ function (_Component) {
         overflow: 'hidden'
       };
       var child = _react.default.isValidElement(children) ? _react.default.Children.only(children) : _react.default.createElement("span", null, children);
+      var nodeWidth = '100%';
+
+      if (this.props.fitParent && fontSize && fontSize.toFixed(0) === maxFontSize) {
+        nodeWidth = 'fit-content';
+      }
 
       var style = _extends({
         fontSize: fontSize ? "".concat(fontSize.toFixed(2), "px") : 'inherit',
-        width: '100%',
+        width: nodeWidth,
         height: '100%'
       }, overflowStyle);
 
@@ -1091,12 +1109,16 @@ ScaleText.propTypes = {
   children: _propTypes.default.node.isRequired,
   minFontSize: _propTypes.default.number.isRequired,
   maxFontSize: _propTypes.default.number.isRequired,
-  widthOnly: _propTypes.default.boolean
+  widthOnly: _propTypes.default.bool,
+  fitParent: _propTypes.default.bool,
+  parentDiff: _propTypes.default.string
 };
 ScaleText.defaultProps = {
   minFontSize: Number.NEGATIVE_INFINITY,
   maxFontSize: Number.POSITIVE_INFINITY,
-  widthOnly: false
+  widthOnly: false,
+  fitParent: false,
+  parentDiff: undefined
 }; // export default ScaleText;
 
 module.exports = ScaleText;

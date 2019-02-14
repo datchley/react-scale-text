@@ -69,3 +69,5 @@ There are two optional props that can be passed.
 * **minFontSize** - the minimum font size to scale down to (_floor_) - default `Number.NEGATIVE_INFINITY`
 * **maxFontSize** - the maximum font size to scale up to (_ceiling_) - default `Number.POSITIVE_INFINITY`
 * **widthOnly** - will scale the element based on the width of it's container only, not the height - default `false`
+* **fitParent** - will calculcate width based on the parent div width and use fit-content when font don't scaled - default `false`
+* **parentDiff** - diff for width when used **fitParent**
