@@ -95,20 +95,21 @@ class ScaleText extends Component {
     // Create copy of wrapper for sizing
     this.ruler = this._wrapper.cloneNode(true);
     this.ruler.id = shortId();
-    let width = ''
+    let nodeWidth = '';
     if (this.props.fitParent) {
-      width = getStyle(this._wrapper.parentNode, 'width')
-      if (this.props.parentDiff != undefined) {
-        width = `calc(${width} - ${this.props.parentDiff})`
+      nodeWidth = getStyle(this._wrapper.parentNode, 'width');
+      if (this.props.parentDiff !== undefined) {
+        nodeWidth = `calc(${nodeWidth} - ${this.props.parentDiff})`;
       }
-    } else {
-      width = getStyle(this._wrapper, 'width')
+    }
+    else {
+      nodeWidth = getStyle(this._wrapper, 'width');
     }
     css(this.ruler, {
       position: 'absolute',
       top: '0px',
       left: 'calc(100vw * 2)',
-      width: width,
+      width: nodeWidth,
       height: getStyle(this._wrapper, 'height')
     });
     document.body.appendChild(this.ruler);
@@ -133,14 +134,14 @@ class ScaleText extends Component {
       React.Children.only(children) :
       (<span>{children}</span>);
 
-    let width = '100%'
-    if (this.props.fitParent && fontSize && fontSize.toFixed(0) == maxFontSize) {
-        width = 'fit-content'
+    let nodeWidth = '100%';
+    if (this.props.fitParent && fontSize && fontSize.toFixed(0) === maxFontSize) {
+      nodeWidth = 'fit-content';
     }
 
     const style = {
       fontSize: fontSize ? `${fontSize.toFixed(2)}px` : 'inherit',
-      width: width,
+      width: nodeWidth,
       height: '100%',
       ...overflowStyle
       // overflow: 'hidden'
@@ -171,14 +172,16 @@ ScaleText.propTypes = {
   minFontSize: PropTypes.number.isRequired,
   maxFontSize: PropTypes.number.isRequired,
   widthOnly: PropTypes.bool,
-  fitParent: PropTypes.bool
+  fitParent: PropTypes.bool,
+  parentDiff: PropTypes.string
 };
 
 ScaleText.defaultProps = {
   minFontSize: Number.NEGATIVE_INFINITY,
   maxFontSize: Number.POSITIVE_INFINITY,
   widthOnly: false,
-  fitParent: false
+  fitParent: false,
+  parentDiff: undefined
 };
 
 // export default ScaleText;
