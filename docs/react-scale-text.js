@@ -1068,7 +1068,8 @@ function (_Component) {
       var _props2 = this.props,
           children = _props2.children,
           widthOnly = _props2.widthOnly,
-          maxFontSize = _props2.maxFontSize;
+          maxFontSize = _props2.maxFontSize,
+          fitParent = _props2.fitParent;
       var overflowStyle = widthOnly ? {
         overflowY: 'visible',
         overflowX: 'hidden',
@@ -1079,7 +1080,7 @@ function (_Component) {
       var child = _react.default.isValidElement(children) ? _react.default.Children.only(children) : _react.default.createElement("span", null, children);
       var nodeWidth = '100%';
 
-      if (this.props.fitParent && fontSize && fontSize.toFixed(0) === maxFontSize) {
+      if (fitParent && fontSize !== null && maxFontSize - fontSize < Number.EPSILON) {
         nodeWidth = 'fit-content';
       }
 

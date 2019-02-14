@@ -124,7 +124,7 @@ class ScaleText extends Component {
 
   render() {
     const { size: fontSize } = this.state;
-    const { children, widthOnly, maxFontSize } = this.props;
+    const { children, widthOnly, maxFontSize, fitParent } = this.props;
 
     const overflowStyle = widthOnly ?
       { overflowY: 'visible', overflowX: 'hidden', height: 'auto' } :
@@ -135,7 +135,7 @@ class ScaleText extends Component {
       (<span>{children}</span>);
 
     let nodeWidth = '100%';
-    if (this.props.fitParent && fontSize && fontSize.toFixed(0) === maxFontSize) {
+    if (fitParent && fontSize !== null && (maxFontSize - fontSize) < Number.EPSILON) {
       nodeWidth = 'fit-content';
     }
 
