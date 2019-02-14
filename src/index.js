@@ -95,11 +95,20 @@ class ScaleText extends Component {
     // Create copy of wrapper for sizing
     this.ruler = this._wrapper.cloneNode(true);
     this.ruler.id = shortId();
+    let width = ''
+    if (this.props.fitParent) {
+      width = getStyle(this._wrapper.parentNode, 'width')
+      if (this.props.parentDiff != undefined) {
+        width = `calc(${width} - ${this.props.parentDiff})`
+      }
+    } else {
+      width = getStyle(this._wrapper, 'width')
+    }
     css(this.ruler, {
       position: 'absolute',
       top: '0px',
       left: 'calc(100vw * 2)',
-      width: getStyle(this._wrapper, 'width'),
+      width: width,
       height: getStyle(this._wrapper, 'height')
     });
     document.body.appendChild(this.ruler);
@@ -114,7 +123,7 @@ class ScaleText extends Component {
 
   render() {
     const { size: fontSize } = this.state;
-    const { children, widthOnly } = this.props;
+    const { children, widthOnly, maxFontSize } = this.props;
 
     const overflowStyle = widthOnly ?
       { overflowY: 'visible', overflowX: 'hidden', height: 'auto' } :
@@ -124,9 +133,14 @@ class ScaleText extends Component {
       React.Children.only(children) :
       (<span>{children}</span>);
 
+    let width = '100%'
+    if (this.props.fitParent && fontSize && fontSize.toFixed(0) == maxFontSize) {
+        width = 'fit-content'
+    }
+
     const style = {
       fontSize: fontSize ? `${fontSize.toFixed(2)}px` : 'inherit',
-      width: '100%',
+      width: width,
       height: '100%',
       ...overflowStyle
       // overflow: 'hidden'
@@ -156,13 +170,15 @@ ScaleText.propTypes = {
   children: PropTypes.node.isRequired,
   minFontSize: PropTypes.number.isRequired,
   maxFontSize: PropTypes.number.isRequired,
-  widthOnly: PropTypes.bool
+  widthOnly: PropTypes.bool,
+  fitParent: PropTypes.bool
 };
 
 ScaleText.defaultProps = {
   minFontSize: Number.NEGATIVE_INFINITY,
   maxFontSize: Number.POSITIVE_INFINITY,
-  widthOnly: false
+  widthOnly: false,
+  fitParent: false
 };
 
 // export default ScaleText;
