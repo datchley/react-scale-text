@@ -39,6 +39,7 @@ class ScaleText extends Component {
     if (this.shouldResize()) {
       this.resize();
       window.addEventListener('resize', this._handleResize);
+      window.addEventListener('load', this._handleResize);
     }
   }
 
@@ -54,6 +55,7 @@ class ScaleText extends Component {
   componentWillUnmount() {
     if (!this.shouldResize()) {
       window.removeEventListener('resize', this._handleResize);
+      window.removeEventListener('load', this._handleResize);
     }
   }
 
@@ -93,11 +95,21 @@ class ScaleText extends Component {
     // Create copy of wrapper for sizing
     this.ruler = this._wrapper.cloneNode(true);
     this.ruler.id = shortId();
+    let nodeWidth = '';
+    if (this.props.fitParent) {
+      nodeWidth = getStyle(this._wrapper.parentNode, 'width');
+      if (this.props.parentDiff !== undefined) {
+        nodeWidth = `calc(${nodeWidth} - ${this.props.parentDiff})`;
+      }
+    }
+    else {
+      nodeWidth = getStyle(this._wrapper, 'width');
+    }
     css(this.ruler, {
       position: 'absolute',
       top: '0px',
       left: 'calc(100vw * 2)',
-      width: getStyle(this._wrapper, 'width'),
+      width: nodeWidth,
       height: getStyle(this._wrapper, 'height')
     });
     document.body.appendChild(this.ruler);
@@ -112,7 +124,7 @@ class ScaleText extends Component {
 
   render() {
     const { size: fontSize } = this.state;
-    const { children, widthOnly } = this.props;
+    const { children, widthOnly, maxFontSize, fitParent } = this.props;
 
     const overflowStyle = widthOnly ?
       { overflowY: 'visible', overflowX: 'hidden', height: 'auto' } :
@@ -122,9 +134,14 @@ class ScaleText extends Component {
       React.Children.only(children) :
       (<span>{children}</span>);
 
+    let nodeWidth = '100%';
+    if (fitParent && fontSize !== null && (maxFontSize - fontSize) < Number.EPSILON) {
+      nodeWidth = 'fit-content';
+    }
+
     const style = {
       fontSize: fontSize ? `${fontSize.toFixed(2)}px` : 'inherit',
-      width: '100%',
+      width: nodeWidth,
       height: '100%',
       ...overflowStyle
       // overflow: 'hidden'
@@ -154,13 +171,17 @@ ScaleText.propTypes = {
   children: PropTypes.node.isRequired,
   minFontSize: PropTypes.number.isRequired,
   maxFontSize: PropTypes.number.isRequired,
-  widthOnly: PropTypes.bool
+  widthOnly: PropTypes.bool,
+  fitParent: PropTypes.bool,
+  parentDiff: PropTypes.string
 };
 
 ScaleText.defaultProps = {
   minFontSize: Number.NEGATIVE_INFINITY,
   maxFontSize: Number.POSITIVE_INFINITY,
-  widthOnly: false
+  widthOnly: false,
+  fitParent: false,
+  parentDiff: undefined
 };
 
 // export default ScaleText;
